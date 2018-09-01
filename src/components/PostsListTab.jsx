@@ -6,6 +6,7 @@ import { fetchPosts } from '../actions/index'
 import PostCard from './PostCard'
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import PostEditor from '../components/PostEditor'
 
 const styles = theme => ({
     scrollContainer: {
@@ -24,12 +25,14 @@ const styles = theme => ({
 
 class PostsList extends Component {
     state = {
-        isLoading: true
+        isLoading: true,
+        dialogOpen: false
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const userId = this.props.match.params.id;
-        this.props.fetchPosts(userId, () => this.setState({ isLoading: false }))
+        await this.props.fetchPosts(userId)
+        this.setState({ isLoading: false })
     }
 
     renderPosts() {
@@ -51,10 +54,11 @@ class PostsList extends Component {
                         (!this.state.isLoading && this.props.posts.length > 0) ?
                             this.renderPosts() : this.renderLoading()
                     }
-                    <Button style={{position: 'fixed', bottom: 30, right: 30}}variant="fab" color="primary" aria-label="Add" className={classes.button}>
+                    <Button onClick={() => this.setState({dialogOpen: true})} style={{position: 'fixed', bottom: 30, right: 30}}variant="fab" color="primary" aria-label="Add" className={classes.button}>
                         <AddIcon />
                     </Button>
                 </div>
+                <PostEditor type="Add" isOpen={this.state.dialogOpen} handleClose={() => this.setState({dialogOpen: false})}/>
             </div>
         );
     }

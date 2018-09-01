@@ -17,27 +17,27 @@ class PostEditor extends Component {
         body: ''
     }
 
-    async handleSave(){
+    async handleSave() {
         await this.props.addPost(this.props.userId, this.state.title, this.state.body)
         this.props.fetchPosts(this.props.userId)
         this.props.handleClose()
+        this.setState({ title: '', body: '' })
     }
 
-    componentDidMount(){
-        if (this.props.type === 'Edit') {
-            this.setState({
-                title: this.props.title,
-                body: this.props.body
-            })
-        }
+    componentDidMount() {
+        
+    }
+
+    handleCloseAndClearTextField(){
+        this.props.handleClose()
+        this.setState({ title: '', body: '' })
     }
 
     render() {
-
         return (
             <Dialog
                 open={this.props.isOpen}
-                onClose={this.props.handleClose}
+                onClose={() => this.handleCloseAndClearTextField()}
                 aria-labelledby="form-dialog-title"
             >
                 <DialogTitle id="form-dialog-title">{`${this.props.type} Post`}</DialogTitle>
@@ -64,7 +64,7 @@ class PostEditor extends Component {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={this.props.handleClose} color="primary">
+                    <Button onClick={() => this.handleCloseAndClearTextField()} color="primary">
                         Cancel
                     </Button>
                     <Button onClick={() => this.handleSave()} color="primary">
@@ -76,7 +76,7 @@ class PostEditor extends Component {
     }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
     return {
         userId: state.user.id
     }

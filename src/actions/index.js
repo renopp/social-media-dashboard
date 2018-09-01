@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { FETCH_USERS, FETCH_USER, FETCH_POSTS, FETCH_ALBUMS, ADD_POST, UPDATE_POST } from './types'
+import { FETCH_USERS, FETCH_USER, FETCH_POSTS, FETCH_ALBUMS, ADD_POST, UPDATE_POST, DELETE_POST } from './types'
 
 const ROOT_URL = 'https://be-smd.herokuapp.com'
 
@@ -55,5 +55,13 @@ export async function updatePost(userId, id, title, body, callback) {
     return {
         type: UPDATE_POST,
         payload: response
+    }
+}
+
+export async function deletePost(postid) {
+    const response = await axios.delete(`${ROOT_URL}/posts/${postid}`)
+    return {
+        type: DELETE_POST,
+        payload: postid
     }
 }

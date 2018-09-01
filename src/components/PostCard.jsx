@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -7,11 +6,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-
 const styles = theme => ({
     card: {
         margin: theme.spacing.unit,
-        width: 400,
+        flex: 1,
         heigth: 350
     },
     pos: {
@@ -19,30 +17,31 @@ const styles = theme => ({
     },
 });
 
-function UserCard(props) {
-    const { classes } = props;
-    const { id, name, username, email } = props.user;
+function PostCard(props) {
+    const { classes } = props
 
     return (
         <Card className={classes.card}>
             <CardContent>
                 <Typography variant="headline" component="h2">
-                    {name}
-                </Typography>
-                <Typography className={classes.pos} color="textSecondary">
-                    {`@${username}`}
+                    {props.post.title}
                 </Typography>
                 <Typography component="p">
-                    {email}
+                    {props.post.body.split(/\\n|\n/).map((item, key) => {
+                        return (
+                            <span key={key}>
+                                {item}
+                                <br />
+                            </span>
+                        );
+                    })}
                 </Typography>
             </CardContent>
             <CardActions >
-                <Link style={{textDecoration:'none'}} to={`/user/${id}`}>
-                    <Button className={classes.actionButton} color="secondary" size="small">Detail Profile</Button>
-                </Link>
+                <Button className={classes.actionButton} color="secondary" size="small">Detail Post</Button>
             </CardActions>
         </Card>
     );
 }
 
-export default withStyles(styles)(UserCard);
+export default withStyles(styles)(PostCard);

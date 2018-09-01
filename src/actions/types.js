@@ -1,4 +1,5 @@
 export const FETCH_USERS = 'fetch_users'
+export const FETCH_USER = 'fetch_user'
 export const FETCH_POSTS = 'fetch_posts'
 export const FETCH_ALBUMS = 'fetch_albums'
 export const FETCH_COMMENTS = 'fetch_comments'

@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import { connect } from 'react-redux'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import PropTypes from 'prop-types';
 
 import UserCard from '../components/UserCard'
 import { fetchUsers } from '../actions'
@@ -19,10 +20,11 @@ const styles = theme => ({
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        flex: 1
     },
     loadingCircular: {
-        alignSefl: 'center'
+        alignSelf: 'center'
     }
 });
 
@@ -37,7 +39,13 @@ class UsersList extends Component {
     }
     componentDidMount() {
         this.setState({ isLoading: true });
-        this.props.fetchUsers()
+        this.props.fetchUsers(() => this.setState({ isLoading: false }))
+    }
+
+    renderLoading() {
+        return (
+            <CircularProgress color="primary" thickness={5} />
+        );
     }
 
     renderUsersCard() {
@@ -52,7 +60,7 @@ class UsersList extends Component {
             })
         }
         else {
-            return  <CircularProgress classes={this.props.classes.loadingCircular} color="primary" thickness={5} />
+            return <div>Data not found</div>
         }
     }
 
@@ -61,11 +69,18 @@ class UsersList extends Component {
         return (
             <Paper className={classes.root} elevation={1}>
                 <div className={classes.usersList}>
-                    {this.renderUsersCard()}
+                    {
+                        (!this.state.isLoading && this.props.users.length > 0) ?
+                            this.renderUsersCard() : this.renderLoading()
+                    }
                 </div>
             </Paper>
         );
     }
+}
+
+UsersList.propTypes = {
+    classes: PropTypes.object.isRequired,
 }
 
 function mapStateToProps(state) {

@@ -5,32 +5,25 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { connect } from 'react-redux'
-import { addPost, updatePost, fetchPosts } from '../actions/index'
+import { addPost, updatePost, fetchPosts, setEditorTitlePost, setEditorBodyPost, setEditorPostData } from '../actions/index'
 
-import DialogContentText from '@material-ui/core/DialogContentText';
 import Button from '@material-ui/core/Button';
 
 class PostEditor extends Component {
 
-    state = {
-        title: '',
-        body: ''
+    handleCloseAndClearTextField() {
+        this.props.handleClose()
+        this.props.setEditorPostData({ id: 0, title: "", body: "" })
     }
 
     async handleSave() {
-        await this.props.addPost(this.props.userId, this.state.title, this.state.body)
+        if(this.props.editorData.id > 0){
+            await this.props.updatePost(this.props.userId, this.props.editorData.id, this.props.editorData.title, this.props.editorData.body)
+        } else {
+            await this.props.addPost(this.props.userId, this.props.editorData.title, this.props.editorData.body)
+        }
         this.props.fetchPosts(this.props.userId)
-        this.props.handleClose()
-        this.setState({ title: '', body: '' })
-    }
-
-    componentDidMount() {
-        
-    }
-
-    handleCloseAndClearTextField(){
-        this.props.handleClose()
-        this.setState({ title: '', body: '' })
+        this.handleCloseAndClearTextField()
     }
 
     render() {
@@ -40,7 +33,7 @@ class PostEditor extends Component {
                 onClose={() => this.handleCloseAndClearTextField()}
                 aria-labelledby="form-dialog-title"
             >
-                <DialogTitle id="form-dialog-title">{`${this.props.type} Post`}</DialogTitle>
+                <DialogTitle id="form-dialog-title">{`${this.props.editorData.id > 0 ? 'Edit':'Add'} Post`}</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
@@ -49,8 +42,8 @@ class PostEditor extends Component {
                         label="Title"
                         type="text"
                         fullWidth
-                        value={this.state.title}
-                        onChange={(event) => this.setState({ title: event.target.value })}
+                        value={this.props.editorData.title}
+                        onChange={(event) => this.props.setEditorTitlePost(event.target.value)}
                     />
                     <TextField
                         autoFocus
@@ -59,8 +52,8 @@ class PostEditor extends Component {
                         label="Body"
                         type="text"
                         fullWidth
-                        value={this.state.body}
-                        onChange={(event) => this.setState({ body: event.target.value })}
+                        value={this.props.editorData.body}
+                        onChange={(event) => this.props.setEditorBodyPost(event.target.value)}
                     />
                 </DialogContent>
                 <DialogActions>
@@ -78,7 +71,8 @@ class PostEditor extends Component {
 
 function mapStateToProps(state) {
     return {
-        userId: state.user.id
+        userId: state.user.id,
+        editorData: state.editorPostData
     }
 }
-export default connect(mapStateToProps, { addPost, updatePost, fetchPosts })(PostEditor)
+export default connect(mapStateToProps, { addPost, updatePost, fetchPosts, setEditorBodyPost, setEditorTitlePost, setEditorPostData })(PostEditor)

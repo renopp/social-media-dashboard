@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Edit, Delete } from '@material-ui/icons';
 import { connect } from 'react-redux'
-import { deletePost, fetchPosts } from '../actions/index'
+import { deletePost, fetchPosts, setEditorPostData } from '../actions/index'
 
 const styles = theme => ({
     card: {
@@ -26,6 +26,11 @@ const styles = theme => ({
 async function handleDelete(props) {
     await props.deletePost(props.post.id)
     props.fetchPosts(props.post.userId)
+}
+
+function handleEdit(props){
+    props.setEditorPostData(props.post)
+    props.showEditorPost()
 }
 
 function PostCard(props) {
@@ -52,7 +57,7 @@ function PostCard(props) {
                 <Button className={classes.actionButton} color="secondary" size="small">
                     Detail Post
                 </Button>
-                <Button className={classes.actionButton} color="yellow" size="small">
+                <Button onClick={() => handleEdit(props)} className={classes.actionButton} color="yellow" size="small">
                     edit Post
                     <Edit className={classes.rightIcon} />
                 </Button>
@@ -65,4 +70,4 @@ function PostCard(props) {
     );
 }
 
-export default connect(null, { deletePost, fetchPosts })(withStyles(styles)(PostCard));
+export default connect(null, { deletePost, fetchPosts, setEditorPostData })(withStyles(styles)(PostCard));

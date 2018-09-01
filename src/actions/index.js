@@ -1,6 +1,10 @@
 import axios from 'axios'
 
-import { FETCH_USERS, FETCH_USER, FETCH_POSTS, FETCH_ALBUMS, ADD_POST, UPDATE_POST, DELETE_POST } from './types'
+import {
+    FETCH_USERS, FETCH_USER, FETCH_POSTS,
+    FETCH_ALBUMS, ADD_POST, UPDATE_POST,
+    DELETE_POST, SET_EDITORBODYPOST, SET_EDITORTITLEPOST, SET_EDITORPOST_DATA
+} from './types'
 
 const ROOT_URL = 'https://be-smd.herokuapp.com'
 
@@ -48,10 +52,9 @@ export async function addPost(userId, title, body) {
     }
 }
 
-export async function updatePost(userId, id, title, body, callback) {
+export async function updatePost(userId, id, title, body) {
     const params = { title, body, userId, id }
     const response = await axios.put(`${ROOT_URL}/posts/${id}`, params)
-    callback()
     return {
         type: UPDATE_POST,
         payload: response
@@ -63,5 +66,26 @@ export async function deletePost(postid) {
     return {
         type: DELETE_POST,
         payload: postid
+    }
+}
+
+export function setEditorPostData(post) {
+    return {
+        type: SET_EDITORPOST_DATA,
+        payload: post
+    }
+}
+
+export function setEditorTitlePost(title){
+    return {
+        type: SET_EDITORTITLEPOST,
+        payload: title
+    }
+}
+
+export function setEditorBodyPost(body){
+    return {
+        type: SET_EDITORBODYPOST,
+        payload: body
     }
 }

@@ -11,3 +11,7 @@ export const ADD_POST = 'add_post'
 export const ADD_COMMENT = 'add_comment'
 export const UPDATE_POST = 'update_post'
 export const UPDATE_COMMENT = 'update_comment'
+
+export const SET_EDITORPOST_DATA = 'set_editorpost_data'
+export const SET_EDITORTITLEPOST = 'set_editor_title_post'
+export const SET_EDITORBODYPOST = 'set_editor_body_post'

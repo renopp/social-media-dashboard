@@ -57,11 +57,11 @@ function PostCard(props) {
                 <Button className={classes.actionButton} color="secondary" size="small">
                     Detail Post
                 </Button>
-                <Button onClick={() => handleEdit(props)} className={classes.actionButton} color="yellow" size="small">
+                <Button onClick={() => handleEdit(props)} className={classes.actionButton} color="default" size="small">
                     edit Post
                     <Edit className={classes.rightIcon} />
                 </Button>
-                <Button onClick={() => handleDelete(props)} className={classes.actionButton} color="danger" size="small">
+                <Button onClick={() => handleDelete(props)} className={classes.actionButton} color="default" size="small">
                     delete Post
                     <Delete className={classes.rightIcon} />
                 </Button>

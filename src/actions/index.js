@@ -62,7 +62,7 @@ export async function updatePost(userId, id, title, body) {
 }
 
 export async function deletePost(postid) {
-    const response = await axios.delete(`${ROOT_URL}/posts/${postid}`)
+    await axios.delete(`${ROOT_URL}/posts/${postid}`)
     return {
         type: DELETE_POST,
         payload: postid

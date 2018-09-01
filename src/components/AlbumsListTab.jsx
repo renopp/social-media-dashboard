@@ -33,7 +33,7 @@ class AlbumsList extends Component {
     }
 
     renderAlbums() {
-        return this.props.albums.map(album => <AlbumCard album={album}/>)
+        return this.props.albums.map(album => <AlbumCard key={album.id} album={album}/>)
     }
 
     renderLoading() {

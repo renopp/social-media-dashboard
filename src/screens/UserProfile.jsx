@@ -1,24 +1,10 @@
 import React, { Component } from 'react'
-import { withStyles } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { connect } from 'react-redux'
 
 import UserDetailInfo from '../components/UserDetailInfo'
 import PostAndAlbumTab from '../components/PostsAndAlbumsTabs'
 import { fetchUser } from '../actions/index'
-
-const styles = theme => ({
-    container: {
-        display: 'flex',
-        flexDirection: 'row'
-    },
-    userDetailInfo: {
-        width: '200px'
-    },
-    postAndAlbumTab: {
-        flex: 1
-    }
-});
 
 class UserProfile extends Component {
 
@@ -41,9 +27,11 @@ class UserProfile extends Component {
     }
 
     render() {
-        const { classes } = this.props
         return (
-            <div className={classes.container}>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'row'
+            }}>
                 <div style={{ display: 'flex' }}>
                     {
                         (!this.state.isLoading && this.props.user.id) ?
@@ -66,4 +54,4 @@ function mapStateToProps(state) {
 
 
 
-export default connect(mapStateToProps, { fetchUser })(withStyles(styles)(UserProfile))
+export default connect(mapStateToProps, { fetchUser })(UserProfile)

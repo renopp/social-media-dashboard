@@ -36,7 +36,7 @@ class PostsList extends Component {
     }
 
     renderPosts() {
-        return this.props.posts.map(post => <PostCard showEditorPost={() =>this.setState({dialogOpen: true})} post={post} />)
+        return this.props.posts.map(post => <PostCard key={post.id} showEditorPost={() =>this.setState({dialogOpen: true})} post={post} />)
     }
 
     renderLoading() {

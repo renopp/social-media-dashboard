@@ -28,7 +28,7 @@ class PostEditor extends Component {
 
     render() {
         return (
-            <Dialog
+            <Dialog data-test="posteditor-dialog"
                 open={this.props.isOpen}
                 onClose={() => this.handleCloseAndClearTextField()}
                 aria-labelledby="form-dialog-title"
@@ -36,23 +36,25 @@ class PostEditor extends Component {
                 <DialogTitle id="form-dialog-title">{`${this.props.post.id > 0 ? 'Edit':'Add'} Post`}</DialogTitle>
                 <DialogContent>
                     <TextField
+                        data-test="posteditor-title-textinput"
                         autoFocus
                         margin="dense"
                         id="title"
                         label="Title"
                         type="text"
                         fullWidth
-                        multiline
                         value={this.props.post.title}
                         onChange={(event) => this.props.setTitlePost(event.target.value)}
                     />
                     <TextField
+                        data-test="posteditor-body-textinput"
                         autoFocus
                         margin="dense"
                         id="body"
                         label="Body"
                         type="text"
                         fullWidth
+                        multiline
                         value={this.props.post.body}
                         onChange={(event) => this.props.setBodyPost(event.target.value)}
                     />
@@ -61,7 +63,7 @@ class PostEditor extends Component {
                     <Button onClick={() => this.handleCloseAndClearTextField()} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={() => this.handleSave()} color="primary">
+                    <Button data-test="posteditor-save-button" onClick={() => this.handleSave()} color="primary">
                         Save
                     </Button>
                 </DialogActions>

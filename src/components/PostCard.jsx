@@ -40,10 +40,10 @@ function PostCard(props) {
     return (
         <Card data-test="user-post-card" className={classes.card}>
             <CardContent>
-                <Typography variant="headline" component="h2">
+                <Typography data-test="user-post-card-title" variant="headline" component="h2">
                     {props.post.title}
                 </Typography>
-                <Typography component="p">
+                <Typography data-test="user-post-card-body" component="p">
                     {props.post.body.split(/\\n|\n/).map((item, key) => {
                         return (
                             <span key={key}>
@@ -55,9 +55,9 @@ function PostCard(props) {
                 </Typography>
             </CardContent>
             <CardActions data-test="user-post-card-action">
-                <Link to={`/user/${props.post.userId}/post/${props.post.id}`} style={{textDecoration: 'none'}}>
-                <Button data-test="post-card-detail-button" className={classes.actionButton} color="secondary" size="small">
-                    Detail Post
+                <Link to={`/user/${props.post.userId}/post/${props.post.id}`} style={{ textDecoration: 'none' }}>
+                    <Button data-test="post-card-detail-button" className={classes.actionButton} color="secondary" size="small">
+                        Detail Post
                 </Button>
                 </Link>
                 <Button onClick={() => handleEdit(props)} className={classes.actionButton} color="default" size="small">

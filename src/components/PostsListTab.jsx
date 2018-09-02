@@ -56,7 +56,7 @@ class PostsList extends Component {
                         (!this.state.isLoading && this.props.posts.length > 0) ?
                             this.renderPosts() : this.renderLoading()
                     }
-                    <Button onClick={() => this.setState({dialogOpen: true})} style={{position: 'fixed', bottom: 30, right: 30}}variant="fab" color="primary" aria-label="Add" className={classes.button}>
+                    <Button data-test="addnew-post-button" onClick={() => this.setState({dialogOpen: true})} style={{position: 'fixed', bottom: 30, right: 30}}variant="fab" color="primary" aria-label="Add" className={classes.button}>
                         <AddIcon />
                     </Button>
                 </div>

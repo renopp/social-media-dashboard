@@ -60,7 +60,7 @@ function PostCard(props) {
                         Detail Post
                 </Button>
                 </Link>
-                <Button onClick={() => handleEdit(props)} className={classes.actionButton} color="default" size="small">
+                <Button data-test="user-post-edit-button" onClick={() => handleEdit(props)} className={classes.actionButton} color="default" size="small">
                     edit Post
                     <Edit className={classes.rightIcon} />
                 </Button>

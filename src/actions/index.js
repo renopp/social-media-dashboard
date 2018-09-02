@@ -2,10 +2,11 @@ import axios from 'axios'
 
 import {
     FETCH_USERS, FETCH_USER, FETCH_POSTS, FETCH_POST,
-    FETCH_ALBUMS, ADD_POST, UPDATE_POST,DELETE_POST, 
+    FETCH_ALBUMS, FETCH_ALBUM, ADD_POST, UPDATE_POST,DELETE_POST, 
     SET_POST_DATA, SET_TITLEPOST, SET_BODYPOST,
     FETCH_COMMENTS, SET_COMMENT_DATA, SET_NAMECOMMENT, SET_EMAILCOMMENT,
-    SET_BODYCOMMENT, ADD_COMMENT, UPDATE_COMMENT, DELETE_COMMENT
+    SET_BODYCOMMENT, ADD_COMMENT, UPDATE_COMMENT, DELETE_COMMENT,
+    FETCH_PHOTOS
 } from './types'
 
 const ROOT_URL = 'https://be-smd.herokuapp.com'
@@ -44,11 +45,18 @@ export async function fetchPost(postId) {
 }
 
 
-export async function fetchAlbums(userId, callback) {
+export async function fetchAlbums(userId) {
     const response = await axios.get(`${ROOT_URL}/albums?userId=${userId}`);
-    callback();
     return {
         type: FETCH_ALBUMS,
+        payload: response
+    }
+}
+
+export async function fetchAlbum(albumId) {
+    const response = await axios.get(`${ROOT_URL}/albums/${albumId}`);
+    return {
+        type: FETCH_ALBUM,
         payload: response
     }
 }
@@ -156,10 +164,18 @@ export function setEmailComment(email){
     }
 }
 
-
 export function setBodyComment(body){
     return {
         type: SET_BODYCOMMENT,
         payload: body
+    }
+}
+
+export async function fetchPhotos(albumid) {
+    const response = await axios.get(`${ROOT_URL}/photos?albumId=${albumid}`)
+    console.log('resp',response)
+    return {
+        type: FETCH_PHOTOS,
+        payload: response
     }
 }

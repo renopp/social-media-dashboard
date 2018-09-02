@@ -6,6 +6,7 @@ import Header from './components/Header'
 import UsersList from './screens/UsersList'
 import UserProfile from './screens/UserProfile'
 import PostDetail from './screens/PostDetail'
+import AlbumDetail from './screens/AlbumDetail'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={UsersList} />
             <Route path="/user/:id/post/:postid" component={PostDetail} />
+            <Route path="/user/:id/album/:albumid" component={AlbumDetail} />
             <Route path="/users" component={UsersList} />
             <Route path="/user/:id/:page" component={UserProfile} />
             <Route path="/user/:id" component={UserProfile} />

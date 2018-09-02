@@ -27,13 +27,14 @@ class AlbumsList extends Component {
         isLoading: true
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const userId = this.props.match.params.id;
-        this.props.fetchAlbums(userId, () => this.setState({ isLoading: false }))
+        await this.props.fetchAlbums(userId)
+        this.setState({ isLoading: false })
     }
 
     renderAlbums() {
-        return this.props.albums.map(album => <AlbumCard key={album.id} album={album}/>)
+        return this.props.albums.map(album => <AlbumCard key={album.id} album={album} userId={this.props.match.params.id}/>)
     }
 
     renderLoading() {

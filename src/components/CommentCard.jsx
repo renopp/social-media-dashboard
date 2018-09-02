@@ -39,10 +39,10 @@ function CommentCard(props) {
     return (
         <Card data-test="comment-card" className={classes.card}>
             <CardContent>
-                <Typography variant="headline" component="h2">
+                <Typography data-test="comment-card-email" variant="headline" component="h2">
                     {props.comment.email}
                 </Typography>
-                <Typography component="p">
+                <Typography data-test="comment-card-body" component="p">
                     {props.comment.body.split(/\\n|\n/).map((item, key) => {
                         return (
                             <span key={key}>
@@ -52,16 +52,16 @@ function CommentCard(props) {
                         );
                     })}
                 </Typography>
-                <Typography color="textSecondary">
+                <Typography data-test="comment-card-name" color="textSecondary">
                         {`Posted by : ${props.comment.name}`}
                     </Typography>
                 </CardContent>
             <CardActions >
-                <Button onClick={() => handleEdit(props)} className={classes.actionButton} color="default" size="small">
+                <Button data-test="comment-card-edit-button" onClick={() => handleEdit(props)} className={classes.actionButton} color="default" size="small">
                     Edit Comment
                     <Edit className={classes.rightIcon} />
                 </Button>
-                <Button onClick={() => handleDelete(props)} className={classes.actionButton} color="default" size="small">
+                <Button data-test="comment-card-delete-button" onClick={() => handleDelete(props)} className={classes.actionButton} color="default" size="small">
                     Delete Comment
                     <Delete className={classes.rightIcon} />
                 </Button>

@@ -72,7 +72,7 @@ class PostDetail extends Component {
                         (!this.state.isLoading && this.props.comments.length > 0) ? this.renderComments() : this.renderLoading()
                     }
                 </div>
-                <Button onClick={() => this.setState({dialogOpen: true})} style={{position: 'fixed', bottom: 30, right: 30}}variant="fab" color="primary" aria-label="Add">
+                <Button data-test="addnew-comment-button" onClick={() => this.setState({dialogOpen: true})} style={{position: 'fixed', bottom: 30, right: 30}}variant="fab" color="primary" aria-label="Add">
                         <AddIcon />
                 </Button>
                 <CommentEditor isOpen={this.state.dialogOpen} handleClose={() => this.setState({dialogOpen: false})} />

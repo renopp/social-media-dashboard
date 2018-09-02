@@ -32,10 +32,12 @@ class CommentEditor extends Component {
                 open={this.props.isOpen}
                 onClose={() => this.handleCloseAndClearTextField()}
                 aria-labelledby="form-dialog-title"
+                data-test="comment-editor-dialog"
             >
                 <DialogTitle id="form-dialog-title">{`${this.props.post.id > 0 ? 'Edit' : 'Add'} Post`}</DialogTitle>
                 <DialogContent>
                     <TextField
+                        data-test="comment-editor-name"
                         autoFocus
                         margin="dense"
                         id="title"
@@ -46,6 +48,7 @@ class CommentEditor extends Component {
                         onChange={(event) => this.props.setNameComment(event.target.value)}
                     />
                     <TextField
+                        data-test="comment-editor-email"
                         autoFocus
                         margin="dense"
                         id="email"
@@ -56,6 +59,7 @@ class CommentEditor extends Component {
                         onChange={(event) => this.props.setEmailComment(event.target.value)}
                     />
                     <TextField
+                        data-test="comment-editor-body"
                         autoFocus
                         margin="dense"
                         id="body"
@@ -71,7 +75,7 @@ class CommentEditor extends Component {
                     <Button onClick={() => this.handleCloseAndClearTextField()} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={() => this.handleSave()} color="primary">
+                    <Button data-test="comment-editor-save-button" onClick={() => this.handleSave()} color="primary">
                         Save
                     </Button>
                 </DialogActions>

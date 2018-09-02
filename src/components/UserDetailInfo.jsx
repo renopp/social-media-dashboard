@@ -20,24 +20,29 @@ function UserDetailInfo(props) {
     return (
         <Card className={classes.card}>
             <CardContent >
-                <Typography ariant="headline" component="h2">{name}</Typography>
-                <Typography component="p">
-                {`@${username}`}
+                <Typography variant="title" component="h2" >
+                    ABOUT USER
                 </Typography>
                 <Typography component="p">
-                    {email}
+                    {`Name: ${name}`}
                 </Typography>
                 <Typography component="p">
-                    {phone}
+                    {`Username: @${username}`}
                 </Typography>
                 <Typography component="p">
-                    {website}
+                    {`Email: ${email}`}
                 </Typography>
                 <Typography component="p">
-                    {address.city}
+                    {`Phone: ${phone}`}
                 </Typography>
                 <Typography component="p">
-                    {company.name}
+                    {`Website: ${website}`}
+                </Typography>
+                <Typography component="p">
+                    {`City: ${address.city}`}
+                </Typography>
+                <Typography component="p">
+                    {`Company: ${company.name}`}
                 </Typography>
             </CardContent>
         </Card>

@@ -42,6 +42,7 @@ class PostEditor extends Component {
                         label="Title"
                         type="text"
                         fullWidth
+                        multiline
                         value={this.props.post.title}
                         onChange={(event) => this.props.setTitlePost(event.target.value)}
                     />

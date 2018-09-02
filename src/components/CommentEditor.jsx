@@ -62,6 +62,7 @@ class CommentEditor extends Component {
                         label="Body"
                         type="text"
                         fullWidth
+                        multiline
                         value={this.props.comment.body}
                         onChange={(event) => this.props.setBodyComment(event.target.value)}
                     />

@@ -60,7 +60,6 @@ class PostDetail extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div style={{ display: 'flex', flexDirection: 'column', flex:1 }}>
                 <div style={{ flex: 1 }}>

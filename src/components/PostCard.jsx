@@ -38,7 +38,7 @@ function PostCard(props) {
     const { classes } = props
 
     return (
-        <Card className={classes.card}>
+        <Card data-test="user-post-card" className={classes.card}>
             <CardContent>
                 <Typography variant="headline" component="h2">
                     {props.post.title}
@@ -54,9 +54,9 @@ function PostCard(props) {
                     })}
                 </Typography>
             </CardContent>
-            <CardActions >
+            <CardActions data-test="user-post-card-action">
                 <Link to={`/user/${props.post.userId}/post/${props.post.id}`} style={{textDecoration: 'none'}}>
-                <Button className={classes.actionButton} color="secondary" size="small">
+                <Button data-test="album-card-detail-button" className={classes.actionButton} color="secondary" size="small">
                     Detail Post
                 </Button>
                 </Link>

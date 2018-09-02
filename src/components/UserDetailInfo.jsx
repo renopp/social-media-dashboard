@@ -18,7 +18,7 @@ function UserDetailInfo(props) {
     const { name, email, username, phone, website, address, company } = props.user
 
     return (
-        <Card className={classes.card}>
+        <Card data-test="user-about-card" className={classes.card}>
             <CardContent >
                 <Typography variant="title" component="h2" >
                     ABOUT USER

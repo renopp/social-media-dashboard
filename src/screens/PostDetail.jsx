@@ -62,10 +62,10 @@ class PostDetail extends Component {
     render() {
         console.log(this.props)
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', flex:1 }}>
                 <div style={{ flex: 1 }}>
                     {
-                        this.state.isLoading ? this.renderLoading() : this.renderPostDetail()
+                        this.state.isLoading ? '' : this.renderPostDetail()
                     }
                 </div>
                 <div>

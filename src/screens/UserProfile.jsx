@@ -36,7 +36,7 @@ class UserProfile extends Component {
                 <div style={{ display: 'flex' }}>
                     {
                         (!this.state.isLoading && this.props.user.id) ?
-                            <UserDetailInfo user={this.props.user} /> : this.renderLoading()
+                            <UserDetailInfo user={this.props.user} /> : ''
                     }
                 </div>
                 <div style={{ flex: 1, overflowY: 'auto' }}>

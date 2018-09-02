@@ -41,7 +41,9 @@ class PostsList extends Component {
 
     renderLoading() {
         return (
+            <div style={{display: 'flex', flex:1,justifyContent: 'center'}}>
             <CircularProgress color="primary" thickness={5} />
+            </div>
         );
     }
 

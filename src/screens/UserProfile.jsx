@@ -12,12 +12,13 @@ class UserProfile extends Component {
         isLoading: true,
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const { location, history } = this.props;
         if (!this.props.match.params.page) {
             history.replace(location.pathname + '/posts');
         }
-        this.props.fetchUser(this.props.match.params.id, () => this.setState({ isLoading: false }))
+        await this.props.fetchUser(this.props.match.params.id)
+        this.setState({isLoading: false})
     }
 
     renderLoading() {

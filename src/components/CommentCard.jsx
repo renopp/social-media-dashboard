@@ -7,8 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Edit, Delete } from '@material-ui/icons';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { deletePost, fetchPosts, setPostData } from '../actions/index'
+import { deleteComment, fetchComments, setCommentData } from '../actions/index'
 
 const styles = theme => ({
     card: {
@@ -25,26 +24,26 @@ const styles = theme => ({
 });
 
 async function handleDelete(props) {
-    await props.deletePost(props.post.id)
-    props.fetchPosts(props.post.userId)
+    await props.deleteComment(props.comment.id)
+    props.fetchComments(props.comment.postId)
 }
 
-function handleEdit(props) {
-    props.setPostData(props.post)
-    props.showEditorPost()
+function handleEdit(props){
+    props.setCommentData(props.comment)
+    props.showEditorComment()
 }
 
-function PostCard(props) {
+function CommentCard(props) {
     const { classes } = props
 
     return (
         <Card className={classes.card}>
             <CardContent>
                 <Typography variant="headline" component="h2">
-                    {props.post.title}
+                    {props.comment.email}
                 </Typography>
                 <Typography component="p">
-                    {props.post.body.split(/\\n|\n/).map((item, key) => {
+                    {props.comment.body.split(/\\n|\n/).map((item, key) => {
                         return (
                             <span key={key}>
                                 {item}
@@ -53,19 +52,17 @@ function PostCard(props) {
                         );
                     })}
                 </Typography>
-            </CardContent>
+                <Typography color="textSecondary">
+                        {`Posted by : ${props.comment.name}`}
+                    </Typography>
+                </CardContent>
             <CardActions >
-                <Link to={`/user/${props.post.userId}/post/${props.post.id}`} style={{textDecoration: 'none'}}>
-                <Button className={classes.actionButton} color="secondary" size="small">
-                    Detail Post
-                </Button>
-                </Link>
                 <Button onClick={() => handleEdit(props)} className={classes.actionButton} color="default" size="small">
-                    edit Post
+                    Edit Comment
                     <Edit className={classes.rightIcon} />
                 </Button>
                 <Button onClick={() => handleDelete(props)} className={classes.actionButton} color="default" size="small">
-                    delete Post
+                    Delete Comment
                     <Delete className={classes.rightIcon} />
                 </Button>
             </CardActions>
@@ -73,4 +70,4 @@ function PostCard(props) {
     );
 }
 
-export default connect(null, { deletePost, fetchPosts, setPostData })(withStyles(styles)(PostCard));
+export default connect(null, { deleteComment, fetchComments, setCommentData })(withStyles(styles)(CommentCard));

@@ -1,16 +1,17 @@
 import axios from 'axios'
 
 import {
-    FETCH_USERS, FETCH_USER, FETCH_POSTS,
-    FETCH_ALBUMS, ADD_POST, UPDATE_POST,
-    DELETE_POST, SET_EDITORBODYPOST, SET_EDITORTITLEPOST, SET_EDITORPOST_DATA
+    FETCH_USERS, FETCH_USER, FETCH_POSTS, FETCH_POST,
+    FETCH_ALBUMS, ADD_POST, UPDATE_POST,DELETE_POST, 
+    SET_POST_DATA, SET_TITLEPOST, SET_BODYPOST,
+    FETCH_COMMENTS, SET_COMMENT_DATA, SET_NAMECOMMENT, SET_EMAILCOMMENT,
+    SET_BODYCOMMENT, ADD_COMMENT, UPDATE_COMMENT, DELETE_COMMENT
 } from './types'
 
 const ROOT_URL = 'https://be-smd.herokuapp.com'
 
-export async function fetchUser(userId, callback) {
+export async function fetchUser(userId) {
     const response = await axios.get(`${ROOT_URL}/users/${userId}`)
-    callback()
     return {
         type: FETCH_USER,
         payload: response
@@ -33,6 +34,15 @@ export async function fetchPosts(userId) {
         payload: response
     }
 }
+
+export async function fetchPost(postId) {
+    const response = await axios.get(`${ROOT_URL}/posts/${postId}`);
+    return {
+        type: FETCH_POST,
+        payload: response
+    }
+}
+
 
 export async function fetchAlbums(userId, callback) {
     const response = await axios.get(`${ROOT_URL}/albums?userId=${userId}`);
@@ -69,23 +79,87 @@ export async function deletePost(postid) {
     }
 }
 
-export function setEditorPostData(post) {
+export function setPostData(post) {
     return {
-        type: SET_EDITORPOST_DATA,
+        type: SET_POST_DATA,
         payload: post
     }
 }
 
-export function setEditorTitlePost(title){
+export function setTitlePost(title){
     return {
-        type: SET_EDITORTITLEPOST,
+        type: SET_TITLEPOST,
         payload: title
     }
 }
 
-export function setEditorBodyPost(body){
+export function setBodyPost(body){
     return {
-        type: SET_EDITORBODYPOST,
+        type: SET_BODYPOST,
+        payload: body
+    }
+}
+
+export async function fetchComments(postId){
+    const response = await axios.get(`${ROOT_URL}/comments?postId=${postId}`)
+
+    return {
+        type: FETCH_COMMENTS,
+        payload: response
+    }
+}
+
+export async function addComment(postId,name, email,body) {
+    const params = { postId, name, email, body }
+    const response = await axios.post(`${ROOT_URL}/comments`, params)
+    return {
+        type: ADD_COMMENT,
+        payload: response
+    }
+}
+
+export async function updateComment(commentid, name, email, body) {
+    const params = { name, email, body }
+    const response = await axios.patch(`${ROOT_URL}/comments/${commentid}`, params)
+    return {
+        type: UPDATE_COMMENT,
+        payload: response
+    }
+}
+
+export async function deleteComment(commentid) {
+    await axios.delete(`${ROOT_URL}/comments/${commentid}`)
+    return {
+        type: DELETE_COMMENT,
+        payload: commentid
+    }
+}
+
+export function setCommentData(comment) {
+    return {
+        type: SET_COMMENT_DATA,
+        payload: comment
+    }
+}
+
+export function setNameComment(name){
+    return {
+        type: SET_NAMECOMMENT,
+        payload: name
+    }
+}
+
+export function setEmailComment(email){
+    return {
+        type: SET_EMAILCOMMENT,
+        payload: email
+    }
+}
+
+
+export function setBodyComment(body){
+    return {
+        type: SET_BODYCOMMENT,
         payload: body
     }
 }

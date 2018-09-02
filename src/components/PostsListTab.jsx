@@ -4,8 +4,8 @@ import { withStyles } from '@material-ui/core/styles'
 import { connect } from 'react-redux'
 import { fetchPosts } from '../actions/index'
 import PostCard from './PostCard'
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
+import Button from '@material-ui/core/Button'
+import AddIcon from '@material-ui/icons/Add'
 import PostEditor from '../components/PostEditor'
 
 const styles = theme => ({
@@ -58,7 +58,7 @@ class PostsList extends Component {
                         <AddIcon />
                     </Button>
                 </div>
-                <PostEditor type="Add" isOpen={this.state.dialogOpen} handleClose={() => this.setState({dialogOpen: false})}/>
+                <PostEditor isOpen={this.state.dialogOpen} handleClose={() => this.setState({dialogOpen: false})}/>
             </div>
         );
     }

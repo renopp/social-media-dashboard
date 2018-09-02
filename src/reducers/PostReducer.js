@@ -1,12 +1,14 @@
-import { SET_EDITORPOST_DATA, SET_EDITORBODYPOST, SET_EDITORTITLEPOST } from '../actions/types'
+import { SET_POST_DATA, SET_TITLEPOST, SET_BODYPOST, FETCH_POST } from '../actions/types'
 
 export default function (state = {}, action) {
     switch (action.type) {
-        case SET_EDITORPOST_DATA:
+        case FETCH_POST:
+            return action.payload.data
+        case SET_POST_DATA:
             return action.payload
-        case SET_EDITORBODYPOST:
+        case SET_BODYPOST:
             return { ...state, body: action.payload }
-        case SET_EDITORTITLEPOST:
+        case SET_TITLEPOST:
             return { ...state, title: action.payload }
         default:
             return state

@@ -5,24 +5,24 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { connect } from 'react-redux'
-import { addPost, updatePost, fetchPosts, setBodyPost, setTitlePost, setPostData } from '../actions/index'
+import { addComment, updateComment, fetchComments, setBodyComment, setNameComment, setEmailComment, setCommentData } from '../actions/index'
 
 import Button from '@material-ui/core/Button';
 
-class PostEditor extends Component {
+class CommentEditor extends Component {
 
     handleCloseAndClearTextField() {
         this.props.handleClose()
-        this.props.setPostData({ id: 0, title: "", body: "" })
+        this.props.setCommentData({ id: 0, name: "", email: "", body: "" })
     }
 
     async handleSave() {
-        if(this.props.post.id > 0){
-            await this.props.updatePost(this.props.userId, this.props.post.id, this.props.post.title, this.props.post.body)
+        if (this.props.comment.id > 0) {
+            await this.props.updateComment(this.props.comment.id, this.props.comment.name, this.props.comment.email, this.props.comment.body)
         } else {
-            await this.props.addPost(this.props.userId, this.props.post.title, this.props.post.body)
+            await this.props.addComment(this.props.post.id, this.props.comment.name, this.props.comment.email, this.props.comment.body)
         }
-        this.props.fetchPosts(this.props.userId)
+        this.props.fetchComments(this.props.post.id)
         this.handleCloseAndClearTextField()
     }
 
@@ -33,17 +33,27 @@ class PostEditor extends Component {
                 onClose={() => this.handleCloseAndClearTextField()}
                 aria-labelledby="form-dialog-title"
             >
-                <DialogTitle id="form-dialog-title">{`${this.props.post.id > 0 ? 'Edit':'Add'} Post`}</DialogTitle>
+                <DialogTitle id="form-dialog-title">{`${this.props.post.id > 0 ? 'Edit' : 'Add'} Post`}</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
                         margin="dense"
                         id="title"
-                        label="Title"
+                        label="Name"
                         type="text"
                         fullWidth
-                        value={this.props.post.title}
-                        onChange={(event) => this.props.setTitlePost(event.target.value)}
+                        value={this.props.comment.name}
+                        onChange={(event) => this.props.setNameComment(event.target.value)}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="email"
+                        label="Email"
+                        type="email"
+                        fullWidth
+                        value={this.props.comment.email}
+                        onChange={(event) => this.props.setEmailComment(event.target.value)}
                     />
                     <TextField
                         autoFocus
@@ -52,8 +62,8 @@ class PostEditor extends Component {
                         label="Body"
                         type="text"
                         fullWidth
-                        value={this.props.post.body}
-                        onChange={(event) => this.props.setBodyPost(event.target.value)}
+                        value={this.props.comment.body}
+                        onChange={(event) => this.props.setBodyComment(event.target.value)}
                     />
                 </DialogContent>
                 <DialogActions>
@@ -71,8 +81,8 @@ class PostEditor extends Component {
 
 function mapStateToProps(state) {
     return {
-        userId: state.user.id,
+        comment: state.comment,
         post: state.post
     }
 }
-export default connect(mapStateToProps, { addPost, updatePost, fetchPosts, setPostData, setTitlePost, setBodyPost })(PostEditor)
+export default connect(mapStateToProps, { addComment, updateComment, fetchComments, setCommentData, setNameComment, setEmailComment, setBodyComment })(CommentEditor)

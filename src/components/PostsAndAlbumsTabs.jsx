@@ -9,11 +9,11 @@ import AlbumsListTab from './AlbumsListTab'
 import PostsListTab from './PostsListTab'
 
 const styles = theme => ({
-    // root: {
-    //     margin: theme.spacing.unit,
-    //     flexGrow: 1,
-    //     backgroundColor: theme.palette.background.paper,
-    // },
+    root: {
+        margin: theme.spacing.unit,
+        flexGrow: 1,
+        backgroundColor: theme.palette.background.paper,
+    },
 });
 
 class PostsAndAlbumsTabs extends Component {

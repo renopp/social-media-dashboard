@@ -24,7 +24,7 @@ function UserCard(props) {
     const { id, name, username, email } = props.user;
 
     return (
-        <Card className={classes.card}>
+        <Card data-test="user-profile-card" className={classes.card}>
             <CardContent>
                 <Typography variant="headline" component="h2">
                     {name}
@@ -38,7 +38,7 @@ function UserCard(props) {
             </CardContent>
             <CardActions >
                 <Link style={{textDecoration:'none'}} to={`/user/${id}`}>
-                    <Button className={classes.actionButton} color="secondary" size="small">Detail Profile</Button>
+                    <Button data-test="profile-detail-button" className={classes.actionButton} color="secondary" size="small">Detail Profile</Button>
                 </Link>
             </CardActions>
         </Card>

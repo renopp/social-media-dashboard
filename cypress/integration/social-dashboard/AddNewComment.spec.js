@@ -1,6 +1,6 @@
 describe('Users can add new comment', function() {
     it('has to be show dialog form', function () {
-        cy.visit('http://localhost:3000/user/7/post/67')
+        cy.visit('/user/1/post/10')
         cy.get('[ data-test="addnew-comment-button" ]').eq(0).click()
 
         const email = 'email@cypress.io'

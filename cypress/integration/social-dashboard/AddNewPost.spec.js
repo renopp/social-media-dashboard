@@ -1,6 +1,6 @@
 describe('Users can add new post', function() {
     it('has to be show dialog form', function () {
-        cy.visit('http://localhost:3000/user/7/posts')
+        cy.visit('/user/2/posts')
         cy.get('[ data-test="addnew-post-button" ]').eq(0).click()
         const title = 'Cypress testing add ' + new Date().toISOString()
         const body = 'this post add by cypress ' + new Date().toISOString()

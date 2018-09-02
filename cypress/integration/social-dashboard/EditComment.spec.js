@@ -1,6 +1,6 @@
 describe('Users can edit some comment', function() {
     it('has to open dialog and type new atribut and update the comment', function () {
-        cy.visit('http://localhost:3000/user/1/post/10')
+        cy.visit('/user/5/post/50')
 
         const email = 'email@cypress.io'
         const name = 'Cypress testing add ' + new Date().toISOString()

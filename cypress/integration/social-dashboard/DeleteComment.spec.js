@@ -1,6 +1,6 @@
 describe('Users can delete some comment', function() {
     it('can delete latest posts', function () {
-        cy.visit('http://localhost:3000/user/1/post/10')
+        cy.visit('/user/3/post/30')
         
         cy.get('[ data-test="comment-card-delete-button" ]').eq(0).click()
 

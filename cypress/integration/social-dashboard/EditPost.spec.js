@@ -1,6 +1,6 @@
 describe('Users can edit some post', function() {
     it('has to open dialog and type new atribut and update the post', function () {
-        cy.visit('http://localhost:3000/user/7/posts')
+        cy.visit('/user/6/posts')
 
         const title = 'Cypress edit testing ' + new Date().toISOString()
         const body = 'this post edit by cypress ' + new Date().toISOString()

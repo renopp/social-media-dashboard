@@ -27,7 +27,7 @@ function Header(props) {
                         Social Media Dashboard
                     </Typography>
                     <Link style={{textDecoration:'none'}} to="/users">
-                        <Button variant="contained" color="secondary" >
+                        <Button data-test="userslist-header-button" variant="contained" color="secondary" >
                             Users List
                         <ViewListOutlined className={classes.rightIcon} />
                         </Button>

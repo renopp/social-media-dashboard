@@ -22,10 +22,9 @@ const styles = theme => ({
 })
 
 function AlbumCard(props) {
-    console.log('album', props)
     const { classes } = props;
     return (
-            <Card className={classes.card}>
+            <Card data-test="album-card" className={classes.card}>
                 <CardActionArea style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'flex-start' }}>
                     <CardMedia
                         component="img"
@@ -42,7 +41,7 @@ function AlbumCard(props) {
                 </CardActionArea>
                 <CardActions>
                     <Link to={`/user/${props.userId}/album/${props.album.id}`} style={{ textDecoration: 'none' }}>
-                        <Button size="small" color="secondary">
+                        <Button data-test="album-card-button" size="small" color="secondary">
                             See Photos Album
                         </Button>
                     </Link>

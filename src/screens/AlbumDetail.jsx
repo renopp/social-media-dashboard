@@ -32,7 +32,6 @@ class AlbumDetail extends Component {
     }
 
     render() {
-        console.log('a', this.props)
         return (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Typography variant="display1" gutterBottom>

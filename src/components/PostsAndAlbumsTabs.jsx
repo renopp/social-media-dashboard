@@ -44,8 +44,8 @@ class PostsAndAlbumsTabs extends Component {
             <div className={classes.root}>
                 <AppBar style={{ alignItems: 'center' }} position="static">
                     <Tabs value={value} onChange={this.handleChange}>
-                        <Tab label="Posts" />
-                        <Tab label="Albums" />
+                        <Tab data-test="posts-tab" label="Posts" />
+                        <Tab data-test="albums-tab" label="Albums" />
                     </Tabs>
                 </AppBar>
                 <Route path="/user/:id/posts" component={PostsListTab} />

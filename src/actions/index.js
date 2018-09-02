@@ -173,7 +173,7 @@ export function setBodyComment(body){
 
 export async function fetchPhotos(albumid) {
     const response = await axios.get(`${ROOT_URL}/photos?albumId=${albumid}`)
-    console.log('resp',response)
+
     return {
         type: FETCH_PHOTOS,
         payload: response

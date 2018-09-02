@@ -64,7 +64,7 @@ function PostCard(props) {
                     edit Post
                     <Edit className={classes.rightIcon} />
                 </Button>
-                <Button onClick={() => handleDelete(props)} className={classes.actionButton} color="default" size="small">
+                <Button data-test="user-post-delete-button" onClick={() => handleDelete(props)} className={classes.actionButton} color="default" size="small">
                     delete Post
                     <Delete className={classes.rightIcon} />
                 </Button>

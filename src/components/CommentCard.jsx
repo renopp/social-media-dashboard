@@ -37,7 +37,7 @@ function CommentCard(props) {
     const { classes } = props
 
     return (
-        <Card className={classes.card}>
+        <Card data-test="comment-card" className={classes.card}>
             <CardContent>
                 <Typography variant="headline" component="h2">
                     {props.comment.email}

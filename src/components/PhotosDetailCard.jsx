@@ -20,7 +20,7 @@ const styles = theme => ({
 function PhotosDetailCard(props) {
     const {classes} = props
     return (
-        <Card className={classes.card}>
+        <Card data-test="photo-detail-card" className={classes.card}>
             <CardMedia
                 component="img"
                 className={classes.media}
